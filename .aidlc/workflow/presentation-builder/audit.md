@@ -27,3 +27,17 @@
 **Action**: approval
 **Artifacts**: .aidlc/specs/presentation-builder/units.md
 **Outcome**: 9 units approved. Domain-Driven strategy, Modular Monolith architecture. Foundation uses NextAuth.js with existing user_id schema. Development sequence: 7 waves.
+
+### [2025-06-25T11:35:00Z] Design (Foundation): Approval
+
+**Phase**: design
+**Action**: approval
+**Artifacts**: .aidlc/specs/presentation-builder/units/foundation/design.md
+**Outcome**: Foundation design approved. Stack: Prisma + Zod + Tailwind + Route Handlers + Zustand + Vitest + fast-check. Self-hosted Docker. No E2E testing.
+
+### [2025-06-25T11:40:00Z] Tasks (Foundation): Approval
+
+**Phase**: tasks
+**Action**: approval
+**Artifacts**: .aidlc/specs/presentation-builder/units/foundation/tasks.md
+**Outcome**: 12 tasks in 4 waves approved. Component-first strategy, test-after, single-concern granularity. Docker deferred to build phase.

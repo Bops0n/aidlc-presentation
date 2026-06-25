@@ -1,0 +1,74 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["public", "users"]
+}
+
+model User {
+  user_id              BigInt    @id @default(autoincrement())
+  zoho_user_id         String?   @db.VarChar
+  email                String?   @db.VarChar
+  first_name           String?   @db.VarChar
+  last_name            String?   @db.VarChar
+  display_name         String?   @db.VarChar
+  firsttime_login_date DateTime? @db.Timestamptz(6)
+  last_login_date      DateTime? @db.Timestamptz(6)
+  refresh_token        String?   @db.VarChar
+  access_token         String?   @db.VarChar
+  org_info_id          BigInt?
+  user_level           BigInt?
+  profile_img          String?   @db.VarChar
+  department_name      String?   @db.VarChar
+  position_name        String?   @db.VarChar
+  phone                String?   @db.VarChar
+  hash_password        String?   @db.VarChar
+  encode_url           String?   @db.VarChar
+  is_delete            Boolean?  @default(false)
+  confirm_email        Boolean?  @default(false)
+  resetpassword_code   String?   @db.VarChar
+  provider             String?   @db.VarChar
+  provider_user_id     String?   @db.VarChar
+
+  presentations Presentation[]
+
+  @@map("nextauth_user_table")
+  @@schema("users")
+}
+
+model Presentation {
+  id            String   @id @default(cuid())
+  title         String
+  owner_id      BigInt
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+  is_deleted    Boolean  @default(false)
+  thumbnail_url String?
+
+  owner  User    @relation(fields: [owner_id], references: [user_id])
+  slides Slide[]
+
+  @@index([owner_id])
+  @@index([created_at])
+  @@schema("public")
+}
+
+model Slide {
+  id               String @id @default(cuid())
+  presentation_id  String
+  order            Int
+  background_type  String @default("color")
+  background_value String @default("#ffffff")
+  transition_mode  String @default("none")
+  notes            String?
+  elements         Json   @default("[]")
+
+  presentation Presentation @relation(fields: [presentation_id], references: [id], onDelete: Cascade)
+
+  @@index([presentation_id, order])
+  @@schema("public")
+}

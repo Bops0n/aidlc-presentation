@@ -12,7 +12,7 @@ TypeScript / Next.js 14+ (App Router) / Zustand — Full-stack web application, 
 - **Frameworks**: Next.js 14+ (App Router)
 - **Build System**: npm / next build
 - **Package Manager**: npm
-- **Testing**: Pending D3 decisions
+- **Testing**: Vitest (unit/integration) + fast-check (property-based)
 - **State Management**: Zustand with persist middleware (localStorage)
 - **Database**: PostgreSQL (persistent storage for presentations and uploads)
 - **AI SDK**: Google Gemini SDK (@google/generative-ai)
@@ -28,21 +28,21 @@ TypeScript / Next.js 14+ (App Router) / Zustand — Full-stack web application, 
   - Client: Interactive canvas, state management, drag-drop, rich text editing, presenter mode
 
 ## Infrastructure
-- **Cloud Provider**: Pending D3 decisions
-- **Compute**: Pending D3 decisions (Vercel recommended for Next.js)
+- **Cloud Provider**: Self-hosted (Docker + VPS)
+- **Compute**: Docker container (Next.js standalone output)
 - **Database**: PostgreSQL
-- **IaC Tool**: Pending D3 decisions
+- **IaC Tool**: Docker Compose
 
 ## Patterns & Conventions
-- **Architecture pattern**: App Router pages → Client Components → Zustand Store → localStorage
-- **Data access**: PostgreSQL via ORM (Pending D3 — Prisma/Drizzle), plus client-side Zustand cache
-- **API response format**: Pending D3 — JSON responses from Route Handlers
-- **Error handling**: Pending D3 — will be defined during design phase
-- **Authentication**: NextAuth.js — ใช้ existing `users.nextauth_user_table` (PK: user_id bigint)
-- **Validation**: JSON Schema validation for AI responses (server-side)
-- **Logging**: Pending D3
-- **Code style**: Pending D3
-- **Naming conventions**: Pending D3
+- **Architecture pattern**: App Router pages → Client Components → Zustand Store → API Route Handlers → Prisma → PostgreSQL
+- **Data access**: Prisma ORM with PostgreSQL, elements stored as JSON column in Slide table
+- **API response format**: `{ data: T }` (success) / `{ error: { code, message, details? } }` (error)
+- **Error handling**: Custom AppError class + React Error Boundary (client) + withErrorHandler wrapper (server)
+- **Authentication**: NextAuth.js v5 — credentials provider, JWT sessions, user_id as primary identity
+- **Validation**: Zod schemas at route level
+- **Logging**: Pending — will use structured JSON logging
+- **Code style**: ESLint + Prettier
+- **Naming conventions**: kebab-case files, PascalCase components, named exports
 - **Branch strategy**: Pending D3
 
 ## Environment Configuration
@@ -55,8 +55,8 @@ TypeScript / Next.js 14+ (App Router) / Zustand — Full-stack web application, 
 - Pending D3 decisions
 
 ## Dependency Management
-- **Lockfile**: package-lock.json
-- **Version strategy**: Pending D3
+- **Lockfile**: pnpm-lock.yaml
+- **Version strategy**: Exact versions (pnpm default)
 - **Monorepo tooling**: None — single Next.js app
 
 ## Known Technical Debt
