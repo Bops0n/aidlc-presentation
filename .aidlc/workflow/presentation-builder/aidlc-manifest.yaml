@@ -1,0 +1,88 @@
+version: "2.2"
+feature: "presentation-builder"
+language: "th"
+platform: "kiro"
+created: "2025-06-25T11:15:00Z"
+updated: "2025-06-25T11:25:00Z"
+state:
+  status: "active"
+  scope: "new"
+  sharedPhases: [context, requirements, decomposition]
+  mode: "incremental"
+  foundationSkipped: false
+  implementationMode: null
+  quickPath: false
+artifacts:
+  context:
+    status: "approved"
+    timestamp: "2025-06-25T11:20:00Z"
+    files: [context.md]
+  requirements:
+    status: "approved"
+    timestamp: "2025-06-25T11:25:00Z"
+    files: [requirements.md, personas.md]
+  decomposition:
+    status: "approved"
+    timestamp: "2025-06-25T11:30:00Z"
+    files: [units.md]
+context-summary:
+  type: "Greenfield"
+  scope: "new"
+  stack: "TypeScript / Next.js (App Router) / Zustand / PostgreSQL"
+  architecture: "Full-stack Next.js with Route Handlers"
+  feature: "AI-Powered Web-First Presentation Builder with Gemini AI integration, multi-format export, image upload, PostgreSQL persistence, and professional presenter mode"
+  impact: "New standalone"
+  complexity: "High"
+  teamSize: null
+  recommendations:
+    personas: true
+    units: true
+    nfr: true
+implementation:
+  totalTasks: 0
+  completedTasks: 0
+  currentTask: null
+  currentWave: null
+decisions: {}
+steering:
+  updatedBy:
+    product: [context, requirements]
+    tech: [context]
+    structure: [context]
+units:
+  - name: "foundation"
+    status: "in-progress"
+    phase: "design"
+    wave: 1
+  - name: "canvas-editor"
+    status: "pending"
+    phase: null
+    wave: 2
+  - name: "templates-themes"
+    status: "pending"
+    phase: null
+    wave: 3
+  - name: "data-visualization"
+    status: "pending"
+    phase: null
+    wave: 3
+  - name: "media"
+    status: "pending"
+    phase: null
+    wave: 3
+  - name: "ai-generation"
+    status: "pending"
+    phase: null
+    wave: 4
+  - name: "export"
+    status: "pending"
+    phase: null
+    wave: 5
+  - name: "presenter"
+    status: "pending"
+    phase: null
+    wave: 6
+  - name: "collaboration"
+    status: "pending"
+    phase: null
+    wave: 7
