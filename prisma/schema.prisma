@@ -72,3 +72,42 @@ model Slide {
   @@index([presentation_id, order])
   @@schema("public")
 }
+
+model Template {
+  id          String   @id @default(cuid())
+  name        String
+  category    String
+  description String?
+  slides_data Json     @default("[]")
+  theme_id    String?
+  created_at  DateTime @default(now())
+
+  @@index([category])
+  @@schema("public")
+}
+
+model Theme {
+  id               String  @id @default(cuid())
+  name             String
+  background_color String
+  text_color       String
+  accent_color     String
+  heading_font     String
+  body_font        String
+  is_dark          Boolean @default(false)
+
+  @@schema("public")
+}
+
+model Upload {
+  id         String   @id @default(cuid())
+  owner_id   BigInt
+  url        String
+  filename   String
+  size       Int
+  mime_type  String
+  created_at DateTime @default(now())
+
+  @@index([owner_id])
+  @@schema("public")
+}

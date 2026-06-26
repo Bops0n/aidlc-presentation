@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Element entrance animations (Presenter) */
+@keyframes anim-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes anim-fly {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes anim-slide {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes anim-zoom {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes anim-bounce {
+  0% { opacity: 0; transform: translateY(40px); }
+  60% { opacity: 1; transform: translateY(-10px); }
+  80% { transform: translateY(5px); }
+  100% { transform: translateY(0); }
+}
+@keyframes anim-spin {
+  from { opacity: 0; transform: rotate(-180deg) scale(0.8); }
+  to { opacity: 1; transform: rotate(0deg) scale(1); }
+}
+
+.anim-fade { animation: anim-fade 0.5s ease both; }
+.anim-fly { animation: anim-fly 0.6s ease both; }
+.anim-slide { animation: anim-slide 0.5s ease both; }
+.anim-zoom { animation: anim-zoom 0.5s ease both; }
+.anim-bounce { animation: anim-bounce 0.8s ease both; }
+.anim-spin { animation: anim-spin 0.6s ease both; }

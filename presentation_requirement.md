@@ -19,14 +19,14 @@ The system must be built as a full-stack Next.js application leveraging App Rout
 │        (use client directive)     │            (Server-Side)           │
 ├───────────────────────────────────┼────────────────────────────────────┤
 │ • Interactive Canvas & Viewport   │ • /api/generate-slides             │
-│ • Rich Text Editor & Live Charts   │   (Wraps Gemini SDK with Schemas)  │
+│ • Rich Text Editor & Live Charts   │   (Wraps Bedrock SDK with Schemas)  │
 │ • Slide Sorters & Drag Drop       │ • /api/export                      │
 │ • State Stores (Zustand Persist)  │   (Integrates Google API SDK)      │
 └───────────────────────────────────┴────────────────────────────────────┘
 ```
 
 ### 1.1 Rendering Split
-*   **Server Route Handlers (`/app/api/...`):** Handle secure, server-side actions including Google Gemini generative pipelines (keeping API keys hidden from client bundles) and Google Slides export integrations (handling OAuth tokens or Service Account keys safely).
+*   **Server Route Handlers (`/app/api/...`):** Handle secure, server-side actions including Amazon Bedrock generative pipelines (keeping AWS credentials hidden from client bundles) and Google Slides export integrations (handling OAuth tokens or Service Account keys safely).
 *   **Client Pages & Components (`'use client'`):** Manage real-time graphics canvas editing, drag-and-drop slide sorters, interactive chart grids, theme managers, and presenter modes.
 *   **Client Hydration Guard:** Because slide states are persisted locally in browser storage, a hydration guard must wrap the editor mount. This prevents Next.js static server rendering from complaining about local storage mismatches.
 
@@ -125,7 +125,7 @@ An immersive presentation view that supports professional speaking flows:
 
 ## 6. Server-Side AI Slide Generator Pipeline (`/app/api/generate-slides/route.ts`)
 
-Implement a server-side route handler that executes prompt engineering patterns with the Google Gemini SDK.
+Implement a server-side route handler that executes prompt engineering patterns with the Amazon Bedrock SDK (Claude Sonnet 4.5 — model ID: anthropic.claude-sonnet-4-5-20250929-v1:0).
 
 ### 6.1 Strict Prompt Directives
 The server system prompt must instruct the model to act as a layout architect:

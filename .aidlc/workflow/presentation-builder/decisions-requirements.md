@@ -3,7 +3,7 @@
 ## Context Summary
 - **Project**: AI-Powered Web-First Presentation Builder
 - **Type**: Greenfield / Scope: new
-- **Stack**: TypeScript / Next.js (App Router) / Zustand / PostgreSQL / Google Gemini SDK
+- **Stack**: TypeScript / Next.js (App Router) / Zustand / PostgreSQL / Amazon Bedrock SDK (Claude Sonnet 4.5)
 - **Complexity**: High — 15+ stories, 6+ domains
 - **Key Features**: AI slide generation, interactive canvas editor (960×540), template gallery (6 categories), rich layout system (30+ layouts), live charts, multi-format export (pixel-perfect), presenter mode, image upload, Unsplash integration, real-time collaboration (co-op editing)
 
@@ -86,9 +86,9 @@
 
 ### D1-7: External Integrations
 **Question**: Integrations ไหนบ้างที่ต้องมีตอน launch?
-- 1) ทั้งหมด — Gemini AI, Google Slides, Google Drive, Unsplash **(Recommended)**
-- 2) Core only — Gemini AI + Unsplash (ตัด Google Slides export ไปก่อน)
-- 3) AI only — Gemini AI อย่างเดียว (manual export)
+- 1) ทั้งหมด — Bedrock AI, Google Slides, Google Drive, Unsplash **(Recommended)**
+- 2) Core only — Bedrock AI + Unsplash (ตัด Google Slides export ไปก่อน)
+- 3) AI only — Bedrock AI อย่างเดียว (manual export)
 - 4) Other (please specify): _______
 
 **Answer**: 
@@ -152,7 +152,7 @@
 - D1-4 Core Priority: Canvas Editor เป็นหลัก
 - D1-5 Templates & Layouts: Comprehensive — 25+ templates + 30+ layouts ครบทุกกลุ่ม
 - D1-6 Data Persistence: ทุกอย่างใน PostgreSQL (presentations, slides, elements, uploads, templates, preferences)
-- D1-7 Integrations: Gemini AI + Unsplash + PDF export + PPTX export (ตัด Google Slides export)
+- D1-7 Integrations: Bedrock AI (Claude Sonnet 4.5) + Unsplash + PDF export + PPTX export (ตัด Google Slides export)
 - D1-8 Authentication: Collaborative — login + invite co-edit real-time
 - D1-9 Business Rules: Export fidelity (layout ตรง 100%) + collaboration conflict resolution
 - D1-10 Offline/Online: Online-first — ต้อง online, PostgreSQL เป็น primary store

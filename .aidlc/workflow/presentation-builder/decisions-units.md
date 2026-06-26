@@ -63,7 +63,7 @@
 **Proposed Units**:
 1. **Foundation** — Project setup, auth (US-21), DB schema, shared types, common UI components
 2. **Canvas Editor** — Interactive canvas, elements CRUD, zoom/pan, rich text (US-01~03, US-23, US-26)
-3. **AI Generation** — Gemini integration, prompt → slides pipeline, layout mapping (US-04~05)
+3. **AI Generation** — Bedrock (Claude Sonnet 4.5) integration, prompt → slides pipeline, layout mapping (US-04~05)
 4. **Templates & Themes** — Template gallery, layout presets, theme system (US-06~08)
 5. **Data Visualization** — Chart rendering, data grid editing (US-09~10)
 6. **Media** — Image upload, Unsplash integration (US-11~12)

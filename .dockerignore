@@ -1,0 +1,9 @@
+node_modules
+.next
+.git
+.env.local
+.aidlc
+.kiro
+docs
+*.md
+!README.md

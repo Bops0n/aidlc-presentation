@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { SessionProvider } from "@/components/providers/session-provider";
+import { ErrorBoundary } from "@/components/providers/error-boundary";
 
 export const metadata: Metadata = {
   title: "Presentation Builder",
@@ -13,7 +15,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="th">
-      <body>{children}</body>
+      <body>
+        <SessionProvider>
+          <ErrorBoundary>
+            {children}
+          </ErrorBoundary>
+        </SessionProvider>
+      </body>
     </html>
   );
 }

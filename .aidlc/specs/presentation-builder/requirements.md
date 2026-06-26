@@ -5,7 +5,7 @@
 - **Priority**: 12 High, 11 Medium, 5 Low
 - **User Types**: Presenter, Designer, Quick Creator, Collaborator
 - **Key Entities**: Presentation, Slide, Element, Template, Layout, User, Upload, Theme
-- **Integrations**: Google Gemini AI, Unsplash API, PDF generation, PPTX generation
+- **Integrations**: Amazon Bedrock AI (Claude Sonnet 4.5), Unsplash API, PDF generation, PPTX generation
 - **Core Flows**:
   - AI Generation: prompt → generate → layout mapping → slides
   - Canvas Editing: select element → drag/resize/edit → auto-save
@@ -184,16 +184,9 @@
 2. The system shall preserve element positions (x, y, width, height), colors, and fonts exactly as displayed
 3. WHEN export includes charts THEN charts SHALL render as vector graphics (not rasterized)
 
-### US-14: Export เป็น PPTX
-- **As a** Presenter
-- **I want** export เป็น PowerPoint file ที่เปิดใน Office แล้ว layout ไม่เพี้ยน
-- **So that** ส่งไฟล์ให้คนที่ใช้ PowerPoint ได้โดยตรง
-- **Priority**: High
-
-**Acceptance Criteria (EARS)**:
-1. WHEN user exports PPTX THEN system SHALL map text, shapes, images to native Office shapes
-2. The system shall preserve element positions, sizes, colors, and fonts matching web preview
-3. WHEN slide has chart elements THEN PPTX SHALL include chart as embedded shape (not image)
+### US-14: Export เป็น PPTX `[ตัดออก — scope reduced to PDF only]`
+- ~~As a Presenter, export เป็น PowerPoint~~
+- **Status**: Deferred — user เลือกทำเฉพาะ PDF export
 
 ---
 

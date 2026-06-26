@@ -30,7 +30,7 @@ context-summary:
   scope: "new"
   stack: "TypeScript / Next.js (App Router) / Zustand / PostgreSQL"
   architecture: "Full-stack Next.js with Route Handlers"
-  feature: "AI-Powered Web-First Presentation Builder with Gemini AI integration, multi-format export, image upload, PostgreSQL persistence, and professional presenter mode"
+  feature: "AI-Powered Web-First Presentation Builder with Amazon Bedrock AI integration, multi-format export, image upload, PostgreSQL persistence, and professional presenter mode"
   impact: "New standalone"
   complexity: "High"
   teamSize: null
@@ -51,10 +51,10 @@ steering:
     structure: [context, design]
 units:
   - name: "foundation"
-    status: "in-progress"
+    status: "completed"
     phase: "implement"
     wave: 1
-    completedPhases: [design, tasks]
+    completedPhases: [design, tasks, implement]
     artifacts:
       design:
         status: "approved"
@@ -68,34 +68,56 @@ units:
       design: "ORM=Prisma, Validation=Zod, UI=Tailwind+custom, API=Route Handlers, State=Zustand, Test=Vitest, E2E=None, Lint=ESLint+Prettier, PM=pnpm, PBT=fast-check, Errors=AppError+ErrorBoundary, Hosting=Docker+VPS"
       tasks: "Strategy=Component-first, Approach=Test-after, Priority=DB→Errors→Auth→CRUD→UI→Shell, Granularity=Single-concern, Docker=Deferred"
   - name: "canvas-editor"
-    status: "pending"
-    phase: null
+    status: "completed"
+    phase: "implement"
     wave: 2
+    completedPhases: [design, tasks, implement]
+    artifacts:
+      design:
+        status: "approved"
+        timestamp: "2025-06-25T14:40:00Z"
+        files: [design.md]
+      tasks:
+        status: "approved"
+        timestamp: "2025-06-25T14:45:00Z"
+        files: [tasks.md]
+    decisions:
+      design: "Canvas=HTML/CSS divs, DragResize=Custom, RichText=Tiptap, UndoRedo=Zustand+immer, Thumbnails=CSS scale, SlideOrder=@dnd-kit/sortable"
   - name: "templates-themes"
-    status: "pending"
-    phase: null
+    status: "completed"
+    phase: "implement"
     wave: 3
+    completedPhases: [design, tasks, implement]
   - name: "data-visualization"
-    status: "pending"
-    phase: null
+    status: "completed"
+    phase: "implement"
     wave: 3
+    completedPhases: [design, tasks, implement]
   - name: "media"
-    status: "pending"
-    phase: null
+    status: "completed"
+    phase: "implement"
     wave: 3
+    completedPhases: [design, tasks, implement]
   - name: "ai-generation"
-    status: "pending"
-    phase: null
+    status: "completed"
+    phase: "implement"
     wave: 4
+    completedPhases: [design, tasks, implement]
+    decisions:
+      design: "Bedrock Claude Sonnet 4.5, Tool Use structured output, layout mapping 960x540"
   - name: "export"
-    status: "pending"
-    phase: null
+    status: "completed"
+    phase: "implement"
     wave: 5
+    completedPhases: [design, tasks, implement]
+    decisions:
+      design: "PDF only (PPTX cut), client-side html2canvas+jsPDF, offscreen 960x540 render, 1 slide/page"
   - name: "presenter"
-    status: "pending"
-    phase: null
+    status: "completed"
+    phase: "implement"
     wave: 6
+    completedPhases: [design, tasks, implement]
   - name: "collaboration"
-    status: "pending"
-    phase: null
+    status: "in-progress"
+    phase: "design"
     wave: 7

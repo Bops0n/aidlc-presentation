@@ -27,5 +27,6 @@ inclusion: always
 
 ## Notes
 - ไฟล์ `presentation_requirement.md` เป็น specification หลักที่อธิบาย architecture, data schemas, features, และ API pipelines ทั้งหมด
-- ต้องการ Google Cloud credentials (Gemini API, Google Slides API, Google Drive API)
+- ต้องการ AWS credentials (Amazon Bedrock — Claude Sonnet 4.5) สำหรับ AI slide generation
+- ต้องการ Google Cloud credentials (Google Slides API, Google Drive API) สำหรับ export
 - ต้องการ Unsplash API key สำหรับ stock photo integration

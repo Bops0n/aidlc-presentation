@@ -41,3 +41,30 @@
 **Action**: approval
 **Artifacts**: .aidlc/specs/presentation-builder/units/foundation/tasks.md
 **Outcome**: 12 tasks in 4 waves approved. Component-first strategy, test-after, single-concern granularity. Docker deferred to build phase.
+
+### [2025-06-25T12:00:00Z] Implementation (Foundation): Complete
+
+**Phase**: implementation
+**Action**: all 4 waves executed (parallel mode)
+**Artifacts**: 28 source files created across src/app, src/components, src/lib, src/store, src/types, prisma
+**Outcome**: Foundation unit fully implemented. Auth (NextAuth), CRUD API, Zustand store, UI components, Dashboard page. TypeScript compiles clean. Database connected and synced.
+
+### [2025-06-25T15:00:00Z] Implementation (Canvas Editor): Complete
+
+**Phase**: implementation
+**Action**: all 3 waves executed (parallel mode)
+**Artifacts**: 20+ source files created — editor store, slides API, canvas viewport, element renderers, transform handles, Tiptap editor, thumbnails sidebar, toolbar, keyboard shortcuts, auto-save
+**Outcome**: Canvas Editor unit fully implemented. Interactive 960×540 canvas with drag/resize/rotate, rich text editing (Tiptap), slide thumbnails with reorder, undo/redo (50 entries), auto-save (2s debounce), keyboard shortcuts. TypeScript clean.
+
+### [2025-06-26T10:30:00Z] Wave 3 Complete
+
+**Phase**: implementation
+**Action**: Wave 3 units completed (templates-themes, data-visualization, media)
+**Outcome**: Templates & Themes (27 templates, 12 themes, 37 layouts), Data Visualization (Recharts 6 chart types + data grid), Media (upload + Unsplash + media picker). 5 of 9 units complete.
+
+### [2025-06-26T11:00:00Z] Export Unit Complete
+
+**Phase**: implementation
+**Action**: Export unit completed (PDF only — scope reduced from PDF+PPTX)
+**Artifacts**: src/lib/pdf-export.ts, src/components/editor/pdf-export-renderer.tsx, toolbar + editor page integration
+**Outcome**: Client-side PDF export via html2canvas + jsPDF. Offscreen 960×540 render, 1 slide per landscape page. Conflict resolved: user confirmed client-side over Puppeteer. 6 of 9 units complete (US-14 PPTX deferred).

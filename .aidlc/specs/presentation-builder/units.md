@@ -114,7 +114,7 @@ provider_user_id VARCHAR
 
 ## Unit 2: AI Generation
 
-**Purpose**: สร้าง slides อัตโนมัติจาก text prompt ผ่าน Google Gemini + layout mapping algorithm
+**Purpose**: สร้าง slides อัตโนมัติจาก text prompt ผ่าน Amazon Bedrock (Claude Sonnet 4.5) + layout mapping algorithm
 **Priority**: High
 **Complexity**: High
 **Stories**: US-04 (Generate slides from prompt), US-05 (Layout mapping)
@@ -122,7 +122,7 @@ provider_user_id VARCHAR
 ### Commands
 | Command | Description | Actor |
 |---------|-------------|-------|
-| GenerateSlides | ส่ง prompt ไป Gemini, ได้ structured JSON กลับมา | User |
+| GenerateSlides | ส่ง prompt ไป Bedrock (Claude Sonnet 4.5), ได้ structured JSON กลับมา | User |
 | MapLayout | แปลง AI response เป็น pixel positions บน 960×540 | System |
 
 ### Domain Model

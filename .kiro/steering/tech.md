@@ -15,7 +15,7 @@ TypeScript / Next.js 14+ (App Router) / Zustand — Full-stack web application, 
 - **Testing**: Vitest (unit/integration) + fast-check (property-based)
 - **State Management**: Zustand with persist middleware (localStorage)
 - **Database**: PostgreSQL (persistent storage for presentations and uploads)
-- **AI SDK**: Google Gemini SDK (@google/generative-ai)
+- **AI SDK**: Amazon Bedrock SDK (@aws-sdk/client-bedrock-runtime) — Claude Sonnet 4.5 model (anthropic.claude-sonnet-4-5-20250929-v1:0)
 - **Export Libraries**: Pending D3 decisions (PDF, PPTX client-side generation)
 - **Chart Rendering**: Pending D3 decisions (SVG-based chart library)
 - **File Upload**: Server-side image upload and storage
@@ -24,7 +24,7 @@ TypeScript / Next.js 14+ (App Router) / Zustand — Full-stack web application, 
 - **Pattern**: Full-stack Next.js — Client Components ('use client') + Server Route Handlers (/app/api/)
 - **API Style**: REST Route Handlers (POST /api/generate-slides, POST /api/export)
 - **Rendering Split**:
-  - Server: Route Handlers สำหรับ AI generation pipeline และ Google Slides export (ซ่อน API keys)
+  - Server: Route Handlers สำหรับ AI generation pipeline (Amazon Bedrock) และ Google Slides export (ซ่อน credentials)
   - Client: Interactive canvas, state management, drag-drop, rich text editing, presenter mode
 
 ## Infrastructure
@@ -47,7 +47,7 @@ TypeScript / Next.js 14+ (App Router) / Zustand — Full-stack web application, 
 
 ## Environment Configuration
 - **Config approach**: Environment variables (.env.local)
-- **Required env vars**: GEMINI_API_KEY, GOOGLE_SERVICE_ACCOUNT_KEY, UNSPLASH_ACCESS_KEY, DATABASE_URL
+- **Required env vars**: AWS_BEARER_TOKEN_BEDROCK, AWS_REGION, BEDROCK_MODEL_ID, GOOGLE_SERVICE_ACCOUNT_KEY, UNSPLASH_ACCESS_KEY, DATABASE_URL
 - **Environments**: Development (local), Production
 - **Secrets management**: Server-side only via Route Handlers
 

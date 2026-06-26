@@ -30,7 +30,7 @@ Single Next.js App Router application, src/ directory convention, app/ for pages
 |------|---------|-------|
 | src/types/index.ts | Core domain data schemas | Element, Slide, Presentation contracts |
 | src/store/presentationStore.ts | Zustand store with persistence | undo/redo, localStorage sync |
-| src/app/api/generate-slides/route.ts | AI generation endpoint | Gemini SDK integration |
+| src/app/api/generate-slides/route.ts | AI generation endpoint | Amazon Bedrock SDK integration |
 | src/app/api/export/route.ts | Google Slides export | Service Account auth |
 | src/app/api/upload/route.ts | Image upload endpoint | File storage + DB record |
 | next.config.js | Next.js configuration | Pending design phase |
