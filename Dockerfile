@@ -1,36 +1,46 @@
-# ---- Build Stage ----
-FROM node:18-alpine AS builder
+# Multi-stage build for Next.js standalone
+FROM node:20-alpine AS base
 
-RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@9 --activate
 
+# --- Dependencies ---
+FROM base AS deps
 WORKDIR /app
-
-# Install dependencies
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
-# Copy source and build
+# --- Build ---
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# Generate Prisma client
 RUN pnpm prisma generate
+
+# Build Next.js (standalone output)
 RUN pnpm build
 
-# ---- Production Stage ----
-FROM node:18-alpine AS runner
-
-RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
-
+# --- Production ---
+FROM node:20-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Copy standalone output
+# Create uploads directory
+RUN mkdir -p /app/public/uploads
+
+# Copy standalone build
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/node_modules/.pnpm/@prisma+client@6.9.0_prisma@6.9.0_typescript@5.7.3__typescript@5.7.3/node_modules/.prisma ./node_modules/.prisma
 
 EXPOSE 3000
+
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
 CMD ["node", "server.js"]

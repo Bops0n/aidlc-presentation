@@ -3,37 +3,41 @@ version: "3.8"
 services:
   db:
     image: postgres:16-alpine
-    restart: unless-stopped
+    restart: always
     environment:
+      POSTGRES_DB: presentation_builder
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ${DB_PASSWORD:-123123}
-      POSTGRES_DB: presentation_builder
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-      - ./prisma/init.sql:/docker-entrypoint-initdb.d/01-init.sql
     ports:
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./prisma/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
-      timeout: 3s
+      timeout: 5s
       retries: 5
 
   app:
     build: .
-    restart: unless-stopped
+    restart: always
     ports:
-      - "80:3000"
-    depends_on:
-      db:
-        condition: service_healthy
+      - "3000:3000"
     environment:
       DATABASE_URL: postgresql://postgres:${DB_PASSWORD:-123123}@db:5432/presentation_builder?schema=public
       NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
-      NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost}
+      NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3000}
       AWS_BEARER_TOKEN_BEDROCK: ${AWS_BEARER_TOKEN_BEDROCK}
       AWS_REGION: ${AWS_REGION:-us-east-1}
-      BEDROCK_MODEL_ID: ${BEDROCK_MODEL_ID:-us.anthropic.claude-3-5-sonnet-20241022-v2:0}
+      BEDROCK_MODEL_ID: ${BEDROCK_MODEL_ID:-us.amazon.nova-pro-v1:0}
+      UNSPLASH_ACCESS_KEY: ${UNSPLASH_ACCESS_KEY:-}
+    volumes:
+      - uploads_data:/app/public/uploads
+    depends_on:
+      db:
+        condition: service_healthy
 
 volumes:
-  pgdata:
+  postgres_data:
+  uploads_data:

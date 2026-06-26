@@ -11,8 +11,8 @@ const client = new BedrockRuntimeClient({
 export async function invokeBedrockWithTool(
   systemPrompt: string,
   userPrompt: string,
-  tool: { name: string; description: string; input_schema: object }
-) {
+  tool: { name: string; description: string; input_schema: Record<string, unknown> }
+): Promise<Record<string, any>> {
   const command = new ConverseCommand({
     modelId: process.env.BEDROCK_MODEL_ID || "us.amazon.nova-pro-v1:0",
     system: [{ text: systemPrompt }],
@@ -29,7 +29,7 @@ export async function invokeBedrockWithTool(
             name: tool.name,
             description: tool.description,
             inputSchema: {
-              json: tool.input_schema,
+              json: tool.input_schema as any,
             },
           },
         },
@@ -46,12 +46,14 @@ export async function invokeBedrockWithTool(
 
   // Extract tool use from response
   const toolUseBlock = response.output?.message?.content?.find(
-    (block: any) => block.toolUse
+    (block) => "toolUse" in block
   );
 
-  if (!toolUseBlock?.toolUse?.input) {
+  const input = (toolUseBlock as any)?.toolUse?.input;
+
+  if (!input) {
     throw new Error("AI did not return structured output");
   }
 
-  return toolUseBlock.toolUse.input;
+  return input as Record<string, any>;
 }

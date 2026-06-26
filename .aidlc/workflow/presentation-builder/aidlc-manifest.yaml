@@ -5,7 +5,7 @@ platform: "kiro"
 created: "2025-06-25T11:15:00Z"
 updated: "2025-06-25T11:25:00Z"
 state:
-  status: "active"
+  status: "ready-to-deploy"
   scope: "new"
   sharedPhases: [context, requirements, decomposition]
   mode: "incremental"
@@ -118,6 +118,7 @@ units:
     wave: 6
     completedPhases: [design, tasks, implement]
   - name: "collaboration"
-    status: "in-progress"
+    status: "cut"
     phase: "design"
     wave: 7
+    reason: "Deferred — ship without real-time collaboration for v1.0"
