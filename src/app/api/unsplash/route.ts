@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { withErrorHandler } from "@/lib/errors";
 
+export const dynamic = "force-dynamic";
+
 async function getHandler(request: Request) {
   const { searchParams } = new URL(request.url);
   const query = searchParams.get("query") || "";
